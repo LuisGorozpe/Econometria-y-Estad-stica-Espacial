@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="introduccion-R_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="introduccion-R_files/libs/clipboard/clipboard.min.js"></script>
 <script src="introduccion-R_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="introduccion-R_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="introduccion-R_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -72,6 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="introduccion-R_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="introduccion-R_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="introduccion-R_files/libs/bootstrap/bootstrap-6afd44f53177509fd16e44e34096eacb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -129,24 +132,339 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="e4db7fc7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
+<div id="e4db7fc7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the package if you haven't already</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("sf")</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("sf", dependencies = TRUE) </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="74bf683a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
+<div id="74bf683a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the library</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<pre><code>ERROR: Error in library(sf): no hay paquete llamado ‘sf’
-
-Error in library(sf): no hay paquete llamado ‘sf’
-Traceback:
-
-1. stop(packageNotFoundError(package, lib.loc, sys.call()))</code></pre>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE
+</code></pre>
 </div>
 </div>
 <p>https://klaothongchan.medium.com/getting-r-into-vscode-5d1c8bf7f745</p>
+<div id="3b5c0613" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>municipi<span class="ot">&lt;-</span><span class="fu">read_sf</span>(<span class="st">"../mg_2025_integrado/conjunto_de_datos/00mun.shp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="50453c61" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"geojsonio"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing package into ‘/home/leag555/R/x86_64-pc-linux-gnu-library/4.5’
+(as ‘lib’ is unspecified)
+
+also installing the dependencies ‘protolite’, ‘geojson’, ‘jqr’
+
+
+Warning message in install.packages("geojsonio"):
+“installation of package ‘protolite’ had non-zero exit status”
+Warning message in install.packages("geojsonio"):
+“installation of package ‘jqr’ had non-zero exit status”
+Warning message in install.packages("geojsonio"):
+“installation of package ‘geojson’ had non-zero exit status”
+Warning message in install.packages("geojsonio"):
+“installation of package ‘geojsonio’ had non-zero exit status”</code></pre>
+</div>
+</div>
+<div id="8658d33b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>municipi<span class="sc">$</span>geometry</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>MULTIPOLYGON (((2488980 1117358, 2489013 111666...
+
+MULTIPOLYGON (((2453327 1143576, 2453363 114357...
+
+MULTIPOLYGON (((2483638 1120034, 2483946 111990...
+
+MULTIPOLYGON (((2481826 1149055, 2481589 114814...
+
+MULTIPOLYGON (((2476760 1150329, 2476784 115031...
+
+ERROR while rich displaying an object: Error in loadNamespace(x): no hay paquete llamado ‘geojsonio’
+
+Traceback:
+1. sapply(x, f, simplify = simplify)
+2. lapply(X = X, FUN = FUN, ...)
+3. FUN(X[[i]], ...)
+4. tryCatch(withCallingHandlers({
+ .     if (!mime %in% names(repr::mime2repr)) 
+ .         stop("No repr_* for mimetype ", mime, " in repr::mime2repr")
+ .     rpr &lt;- repr::mime2repr[[mime]](obj)
+ .     if (is.null(rpr)) 
+ .         return(NULL)
+ .     prepare_content(is.raw(rpr), rpr)
+ . }, error = error_handler), error = outer_handler)
+5. tryCatchList(expr, classes, parentenv, handlers)
+6. tryCatchOne(expr, names, parentenv, handlers[[1L]])
+7. doTryCatch(return(expr), name, parentenv, handler)
+8. withCallingHandlers({
+ .     if (!mime %in% names(repr::mime2repr)) 
+ .         stop("No repr_* for mimetype ", mime, " in repr::mime2repr")
+ .     rpr &lt;- repr::mime2repr[[mime]](obj)
+ .     if (is.null(rpr)) 
+ .         return(NULL)
+ .     prepare_content(is.raw(rpr), rpr)
+ . }, error = error_handler)
+9. repr::mime2repr[[mime]](obj)
+10. repr_geojson.sfc(obj)
+11. repr_geojson(geojsonio::geojson_list(obj), ...)
+12. loadNamespace(x)
+13. withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+14. withOneRestart(expr, restarts[[1L]])
+15. doWithOneRestart(return(expr), restart)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>Geometry set for 2478 features 
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 911292 ymin: 319149.1 xmax: 4083063 ymax: 2349615
+Projected CRS: MEXICO_ITRF_2008_LCC
+First 5 geometries:</code></pre>
+</div>
+</div>
+<div id="4fb27252" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>municipi[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR while rich displaying an object: Error in loadNamespace(x): no hay paquete llamado ‘geojsonio’
+
+Traceback:
+1. sapply(x, f, simplify = simplify)
+2. lapply(X = X, FUN = FUN, ...)
+3. FUN(X[[i]], ...)
+4. tryCatch(withCallingHandlers({
+ .     if (!mime %in% names(repr::mime2repr)) 
+ .         stop("No repr_* for mimetype ", mime, " in repr::mime2repr")
+ .     rpr &lt;- repr::mime2repr[[mime]](obj)
+ .     if (is.null(rpr)) 
+ .         return(NULL)
+ .     prepare_content(is.raw(rpr), rpr)
+ . }, error = error_handler), error = outer_handler)
+5. tryCatchList(expr, classes, parentenv, handlers)
+6. tryCatchOne(expr, names, parentenv, handlers[[1L]])
+7. doTryCatch(return(expr), name, parentenv, handler)
+8. withCallingHandlers({
+ .     if (!mime %in% names(repr::mime2repr)) 
+ .         stop("No repr_* for mimetype ", mime, " in repr::mime2repr")
+ .     rpr &lt;- repr::mime2repr[[mime]](obj)
+ .     if (is.null(rpr)) 
+ .         return(NULL)
+ .     prepare_content(is.raw(rpr), rpr)
+ . }, error = error_handler)
+9. repr::mime2repr[[mime]](obj)
+10. repr_geojson.sf(obj)
+11. repr_geojson(geojsonio::geojson_list(obj), ...)
+12. loadNamespace(x)
+13. withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+14. withOneRestart(expr, restarts[[1L]])
+15. doWithOneRestart(return(expr), restart)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A sf: 3 × 5</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">CVEGEO</th>
+<th data-quarto-table-cell-role="th" scope="col">CVE_ENT</th>
+<th data-quarto-table-cell-role="th" scope="col">CVE_MUN</th>
+<th data-quarto-table-cell-role="th" scope="col">NOMGEO</th>
+<th data-quarto-table-cell-role="th" scope="col">geometry</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;MULTIPOLYGON [m]&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01001</td>
+<td>01</td>
+<td>001</td>
+<td>Aguascalientes</td>
+<td>MULTIPOLYGON (((2488980 111...</td>
+</tr>
+<tr class="even">
+<td>01008</td>
+<td>01</td>
+<td>008</td>
+<td>San José de Gracia</td>
+<td>MULTIPOLYGON (((2453327 114...</td>
+</tr>
+<tr class="odd">
+<td>01011</td>
+<td>01</td>
+<td>011</td>
+<td>San Francisco de los Romo</td>
+<td>MULTIPOLYGON (((2483638 112...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="c99e58dd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(municipi<span class="sc">$</span>CVEGEO)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-R_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="71a5191b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(municipi[<span class="st">"CVEGEO"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-R_files/figure-html/cell-9-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="60d75072" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(municipi<span class="sc">$</span>geometry)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-R_files/figure-html/cell-10-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="2c1bcd76" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Jal_hid<span class="ot">&lt;-</span>municipi[municipi<span class="sc">$</span>CVE_ENT<span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">13</span>,<span class="dv">14</span>),<span class="st">"CVEGEO"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="79a89a1f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Jal_hid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-R_files/figure-html/cell-12-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="fe67cfa3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(municipi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-R_files/figure-html/cell-13-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="e0717ac6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>imm<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"IMM_2020.xlsx"</span>,<span class="at">sheet =</span> <span class="st">"IMM_2020"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="4e74e7d3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(imm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>   CVE_ENT            NOM_ENT            CVE_MUN            NOM_MUN         
+ Length:2469        Length:2469        Length:2469        Length:2469       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    POB_TOT            ANALF             SBASC            OVSDE        
+ Min.   :     81   Min.   : 0.3534   Min.   : 5.535   Min.   : 0.0000  
+ 1st Qu.:   4489   1st Qu.: 4.4278   1st Qu.:35.738   1st Qu.: 0.6519  
+ Median :  13552   Median : 8.2028   Median :46.339   Median : 1.4283  
+ Mean   :  51038   Mean   :10.1645   Mean   :45.853   Mean   : 3.1600  
+ 3rd Qu.:  35284   3rd Qu.:13.7873   3rd Qu.:55.856   3rd Qu.: 3.3426  
+ Max.   :1922523   Max.   :53.0713   Max.   :88.328   Max.   :64.4504  
+     OVSEE             OVSAE              OVPT             VHAC      
+ Min.   : 0.0000   Min.   : 0.0000   Min.   : 0.000   Min.   : 3.95  
+ 1st Qu.: 0.3661   1st Qu.: 0.8785   1st Qu.: 1.655   1st Qu.:18.73  
+ Median : 0.8282   Median : 2.4523   Median : 4.714   Median :25.00  
+ Mean   : 1.5008   Mean   : 6.1181   Mean   : 7.987   Mean   :26.57  
+ 3rd Qu.: 1.6783   3rd Qu.: 7.2859   3rd Qu.:11.030   3rd Qu.:32.82  
+ Max.   :53.0655   Max.   :81.7884   Max.   :68.150   Max.   :69.56  
+    PL.5000           PO2SM           IM_2020        GM_2020         
+ Min.   :  0.00   Min.   : 28.45   Min.   :21.41   Length:2469       
+ 1st Qu.: 40.13   1st Qu.: 74.62   1st Qu.:51.84   Class :character  
+ Median :100.00   Median : 84.64   Median :54.42   Mode  :character  
+ Mean   : 69.90   Mean   : 82.14   Mean   :53.96                     
+ 3rd Qu.:100.00   3rd Qu.: 91.62   3rd Qu.:56.70                     
+ Max.   :100.00   Max.   :100.00   Max.   :62.40                     
+    IMN_2020     
+ Min.   :0.3352  
+ 1st Qu.:0.8118  
+ Median :0.8522  
+ Mean   :0.8449  
+ 3rd Qu.:0.8878  
+ Max.   :0.9771  </code></pre>
+</div>
+</div>
+<div id="9ed9cde9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mun <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">merge</span>(municipi,imm,<span class="at">by.x =</span><span class="st">"CVEGEO"</span>,<span class="at">by.y =</span> <span class="st">"CVE_MUN"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="2da4c414" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mun)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>    CVEGEO           CVE_ENT.x           CVE_MUN             NOMGEO         
+ Length:2469        Length:2469        Length:2469        Length:2469       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+  CVE_ENT.y           NOM_ENT            NOM_MUN             POB_TOT       
+ Length:2469        Length:2469        Length:2469        Min.   :     81  
+ Class :character   Class :character   Class :character   1st Qu.:   4489  
+ Mode  :character   Mode  :character   Mode  :character   Median :  13552  
+                                                          Mean   :  51038  
+                                                          3rd Qu.:  35284  
+                                                          Max.   :1922523  
+     ANALF             SBASC            OVSDE             OVSEE        
+ Min.   : 0.3534   Min.   : 5.535   Min.   : 0.0000   Min.   : 0.0000  
+ 1st Qu.: 4.4278   1st Qu.:35.738   1st Qu.: 0.6519   1st Qu.: 0.3661  
+ Median : 8.2028   Median :46.339   Median : 1.4283   Median : 0.8282  
+ Mean   :10.1645   Mean   :45.853   Mean   : 3.1600   Mean   : 1.5008  
+ 3rd Qu.:13.7873   3rd Qu.:55.856   3rd Qu.: 3.3426   3rd Qu.: 1.6783  
+ Max.   :53.0713   Max.   :88.328   Max.   :64.4504   Max.   :53.0655  
+     OVSAE              OVPT             VHAC          PL.5000      
+ Min.   : 0.0000   Min.   : 0.000   Min.   : 3.95   Min.   :  0.00  
+ 1st Qu.: 0.8785   1st Qu.: 1.655   1st Qu.:18.73   1st Qu.: 40.13  
+ Median : 2.4523   Median : 4.714   Median :25.00   Median :100.00  
+ Mean   : 6.1181   Mean   : 7.987   Mean   :26.57   Mean   : 69.90  
+ 3rd Qu.: 7.2859   3rd Qu.:11.030   3rd Qu.:32.82   3rd Qu.:100.00  
+ Max.   :81.7884   Max.   :68.150   Max.   :69.56   Max.   :100.00  
+     PO2SM           IM_2020        GM_2020             IMN_2020     
+ Min.   : 28.45   Min.   :21.41   Length:2469        Min.   :0.3352  
+ 1st Qu.: 74.62   1st Qu.:51.84   Class :character   1st Qu.:0.8118  
+ Median : 84.64   Median :54.42   Mode  :character   Median :0.8522  
+ Mean   : 82.14   Mean   :53.96                      Mean   :0.8449  
+ 3rd Qu.: 91.62   3rd Qu.:56.70                      3rd Qu.:0.8878  
+ Max.   :100.00   Max.   :62.40                      Max.   :0.9771  
+          geometry   
+ MULTIPOLYGON :2469  
+ epsg:NA      :   0  
+ +proj=lcc ...:   0  
+                     
+                     
+                     </code></pre>
+</div>
+</div>
+<div id="0ecb767e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Jal_hid_2<span class="ot">&lt;-</span>mun[mun<span class="sc">$</span>CVE_ENT.x<span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">13</span>,<span class="dv">14</span>),]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cdd94dc4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Jal_hid_2[<span class="st">"GM_2020"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-R_files/figure-html/cell-19-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{e._ascencio_g.,
   author = {E. Ascencio G., Luis},
