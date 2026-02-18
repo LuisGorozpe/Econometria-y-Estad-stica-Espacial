@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="introduccion-Python_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="introduccion-Python_files/libs/clipboard/clipboard.min.js"></script>
 <script src="introduccion-Python_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="introduccion-Python_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="introduccion-Python_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -72,6 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="introduccion-Python_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="introduccion-Python_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="introduccion-Python_files/libs/bootstrap/bootstrap-6afd44f53177509fd16e44e34096eacb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -131,13 +134,254 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="491ca3e0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#gdf = gpd.read_file("data.shp")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> ctx  <span class="co"># Opcional: para mapas base</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the shapefile into a GeoDataFrame</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.read_file(<span class="st">"../mg_2025_integrado/conjunto_de_datos/00mun.shp"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows and associated attributes</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gdf.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  CVEGEO CVE_ENT CVE_MUN                     NOMGEO  \
+0  01001      01     001             Aguascalientes   
+1  01008      01     008         San José de Gracia   
+2  01011      01     011  San Francisco de los Romo   
+3  01009      01     009                   Tepezalá   
+4  01007      01     007            Rincón de Romos   
+
+                                            geometry  
+0  POLYGON ((2488980.227 1117358.447, 2489013.495...  
+1  POLYGON ((2453326.553 1143576.423, 2453363.325...  
+2  POLYGON ((2483638.349 1120034.022, 2483946.175...  
+3  POLYGON ((2481826.447 1149055.253, 2481589.222...  
+4  POLYGON ((2476760.231 1150329.046, 2476783.634...  </code></pre>
+</div>
+</div>
+<div id="7c3f9a38" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>excel_df <span class="op">=</span> pd.read_excel(<span class="st">"IMM_2020.xlsx"</span>,sheet_name<span class="op">=</span> <span class="st">"IMM_2020"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="8776c653" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(gdf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>geopandas.geodataframe.GeoDataFrame</code></pre>
+</div>
+</div>
+<div id="bcd9381e" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gdf.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-Python_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="48e52b5e" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gdf.crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PROJCS["MEXICO_ITRF_2008_LCC",GEOGCS["ITRF2008",DATUM["International_Terrestrial_Reference_Frame_2008",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],AUTHORITY["EPSG","1061"]],PRIMEM["Greenwich",0],UNIT["Degree",0.0174532925199433]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["latitude_of_origin",12],PARAMETER["central_meridian",-102],PARAMETER["standard_parallel_1",17.5],PARAMETER["standard_parallel_2",29.5],PARAMETER["false_easting",2500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH]]</code></pre>
+</div>
+</div>
+<div id="fcb7ec14" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste del tipo de dato para poder hacer Merge</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gdf[<span class="st">"CVEGEO"</span>] <span class="op">=</span> gdf[<span class="st">"CVEGEO"</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>excel_df[<span class="st">"CVE_MUN"</span>] <span class="op">=</span> excel_df[<span class="st">"CVE_MUN"</span>].astype(<span class="bu">str</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="9f6347fd" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>merged_gdf <span class="op">=</span> gdf.merge(excel_df, left_on<span class="op">=</span><span class="st">"CVEGEO"</span>, right_on<span class="op">=</span><span class="st">"CVE_MUN"</span>,how<span class="op">=</span><span class="st">"inner"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="9b28500e" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>merged_gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">CVEGEO</th>
+<th data-quarto-table-cell-role="th">CVE_ENT_x</th>
+<th data-quarto-table-cell-role="th">CVE_MUN_x</th>
+<th data-quarto-table-cell-role="th">NOMGEO</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">CVE_ENT_y</th>
+<th data-quarto-table-cell-role="th">NOM_ENT</th>
+<th data-quarto-table-cell-role="th">CVE_MUN_y</th>
+<th data-quarto-table-cell-role="th">NOM_MUN</th>
+<th data-quarto-table-cell-role="th">POB_TOT</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">OVSDE</th>
+<th data-quarto-table-cell-role="th">OVSEE</th>
+<th data-quarto-table-cell-role="th">OVSAE</th>
+<th data-quarto-table-cell-role="th">OVPT</th>
+<th data-quarto-table-cell-role="th">VHAC</th>
+<th data-quarto-table-cell-role="th">PL.5000</th>
+<th data-quarto-table-cell-role="th">PO2SM</th>
+<th data-quarto-table-cell-role="th">IM_2020</th>
+<th data-quarto-table-cell-role="th">GM_2020</th>
+<th data-quarto-table-cell-role="th">IMN_2020</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>10009</td>
+<td>10</td>
+<td>009</td>
+<td>Guanaceví</td>
+<td>POLYGON ((2078613.866 1611851.412, 2078675.423...</td>
+<td>10</td>
+<td>Durango</td>
+<td>10009</td>
+<td>Guanaceví</td>
+<td>9869</td>
+<td>...</td>
+<td>4.293728</td>
+<td>5.711372</td>
+<td>3.202448</td>
+<td>8.271290</td>
+<td>25.130526</td>
+<td>100.000000</td>
+<td>69.282775</td>
+<td>52.996416</td>
+<td>Medio</td>
+<td>0.829850</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>10017</td>
+<td>10</td>
+<td>017</td>
+<td>Ocampo</td>
+<td>POLYGON ((2100516.1 1647595.689, 2100677.369 1...</td>
+<td>10</td>
+<td>Durango</td>
+<td>10017</td>
+<td>Ocampo</td>
+<td>8003</td>
+<td>...</td>
+<td>4.058994</td>
+<td>2.029497</td>
+<td>3.063154</td>
+<td>1.512669</td>
+<td>10.873713</td>
+<td>100.000000</td>
+<td>82.199367</td>
+<td>55.560931</td>
+<td>Bajo</td>
+<td>0.870007</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>10036</td>
+<td>10</td>
+<td>036</td>
+<td>Tlahualilo</td>
+<td>POLYGON ((2313611.763 1634351.113, 2314781.667...</td>
+<td>10</td>
+<td>Durango</td>
+<td>10036</td>
+<td>Tlahualilo</td>
+<td>21143</td>
+<td>...</td>
+<td>2.513516</td>
+<td>0.317746</td>
+<td>2.437636</td>
+<td>1.555534</td>
+<td>19.957649</td>
+<td>56.955021</td>
+<td>75.960402</td>
+<td>57.076729</td>
+<td>Muy bajo</td>
+<td>0.893742</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>10021</td>
+<td>10</td>
+<td>021</td>
+<td>Peñón Blanco</td>
+<td>POLYGON ((2282098.631 1446608.773, 2280795.075...</td>
+<td>10</td>
+<td>Durango</td>
+<td>10021</td>
+<td>Peñón Blanco</td>
+<td>11118</td>
+<td>...</td>
+<td>3.083859</td>
+<td>0.874662</td>
+<td>1.623084</td>
+<td>1.415690</td>
+<td>19.284294</td>
+<td>46.833963</td>
+<td>82.687483</td>
+<td>56.724662</td>
+<td>Muy bajo</td>
+<td>0.888229</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>10034</td>
+<td>10</td>
+<td>034</td>
+<td>Tamazula</td>
+<td>POLYGON ((2004791.908 1520210.009, 2007814.583...</td>
+<td>10</td>
+<td>Durango</td>
+<td>10034</td>
+<td>Tamazula</td>
+<td>26300</td>
+<td>...</td>
+<td>17.543658</td>
+<td>12.005974</td>
+<td>5.679381</td>
+<td>32.368260</td>
+<td>36.025661</td>
+<td>100.000000</td>
+<td>82.311521</td>
+<td>47.090577</td>
+<td>Muy alto</td>
+<td>0.737373</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div id="e679869c" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#variable_interes="IMN_2020"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>variable_interes<span class="op">=</span><span class="st">"POB_TOT"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cb1d56b4" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gdf.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>merged_gdf.plot(column<span class="op">=</span>variable_interes, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         scheme<span class="op">=</span><span class="st">'quantiles'</span>, <span class="co"># Clasificación por cuantiles</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>         k<span class="op">=</span><span class="dv">5</span>,                <span class="co"># 5 clases</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>         cmap<span class="op">=</span><span class="st">'viridis'</span>,     <span class="co"># Mapa de color</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>         legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>         ax<span class="op">=</span>ax)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Distribución Espacial de: </span><span class="sc">{</span>variable_interes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduccion-Python_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Marco Geoestadístico 2025</p>
 <p>https://www.inegi.org.mx/temas/mg/#descargas https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=794551163061</p>
 <p>Índices de marginación 2020</p>
 <p>https://www.gob.mx/conapo/documentos/indices-de-marginacion-2020-284372</p>
-<p>qw</p>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{e._ascencio_g.,
   author = {E. Ascencio G., Luis},
